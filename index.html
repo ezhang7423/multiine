@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        textarea {
+            height: 80vh;
+            width: 40%
+        }
+
+        #app {
+            padding-top: 5vh;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <textarea placeholder="input here" v-model='raw'></textarea>
+        <textarea placeholder="python multiline comes out here" v-model='pythonText'></textarea>
+    </div>
+
+</body>
+
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            raw: 'lol',
+
+        },
+        computed: {
+            pythonText() {
+                if (!this.raw) { return '' }
+                let lineList = this.raw.split('\n')
+                let res = ``
+                for (let line of lineList) {
+                    res += `"${line}" \\\n`
+                }
+                return res
+            }
+        },
+    })
+</script>
+
+</html>
