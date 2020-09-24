@@ -33,17 +33,41 @@
         el: '#app',
         data: {
             raw: '',
+            pythonText: '',
+            first: false
         },
-        computed: {
-            pythonText() {
-                if (!this.raw) { return '' }
+        watch: {
+            raw() {
+                if (this.first) {
+                    this.first = false
+                    return;
+                }
+                console.log('raw changed')
                 let lineList = this.raw.split('\n')
                 let res = ``
                 for (let line of lineList) {
                     res += `"${line} " \\\n`
                 }
-                return res.slice(0, res.length - 3)
-            }
+                this.first = true
+                this.pythonText = res.slice(0, res.length - 3)
+                // this.first = false;
+            },
+            pythonText() {
+                if (this.first) {
+                    this.first = false
+                    return;
+                }
+                console.log('pythontext changed')
+                let lineList = this.pythonText.split('\n')
+                let res = ``
+                for (let line of lineList) {
+                    res += line.slice(1, line.length - 3)
+                }
+                this.first = true
+                this.raw = res.slice(0, res.length - 3)
+                // this.first = false
+            },
+
         },
     })
 </script>
