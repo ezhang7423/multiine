@@ -40,7 +40,7 @@
                 let lineList = this.raw.split('\n')
                 let res = ``
                 for (let line of lineList) {
-                    res += `"${line}" \\\n`
+                    res += `"${line} " \\\n`
                 }
                 return res.slice(0, res.length - 3)
             }
