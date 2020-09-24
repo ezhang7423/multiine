@@ -33,7 +33,6 @@
         el: '#app',
         data: {
             raw: '',
-
         },
         computed: {
             pythonText() {
@@ -43,7 +42,7 @@
                 for (let line of lineList) {
                     res += `"${line}" \\\n`
                 }
-                return res
+                return res.slice(0, res.length - 3)
             }
         },
     })
