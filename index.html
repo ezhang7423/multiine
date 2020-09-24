@@ -60,11 +60,17 @@
                 console.log('pythontext changed')
                 let lineList = this.pythonText.split('\n')
                 let res = ``
-                for (let line of lineList) {
-                    res += line.slice(1, line.length - 3)
-                }
+
+                lineList.forEach(function (i, idx) {
+                    if (idx === lineList.length - 1) {
+                        res += i.slice(1, i.length - 1)
+                    }
+                    else {
+                        res += i.slice(1, i.length - 3) + '\n'
+                    }
+                });
                 this.first = true
-                this.raw = res.slice(0, res.length - 3)
+                this.raw = res
                 // this.first = false
             },
 
