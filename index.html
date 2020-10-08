@@ -61,10 +61,10 @@
 
                 lineList.forEach(function (i, idx) {
                     if (idx === lineList.length - 1) {
-                        res += i.slice(1, i.length - 1)
+                        res += i.trim().slice(1, i.trim().length - 1)
                     }
                     else {
-                        res += i.slice(1, i.length - 3) + '\n'
+                        res += i.trim().slice(1, i.trim().length - 3) + '\n'
                     }
                 });
                 this.first = true
